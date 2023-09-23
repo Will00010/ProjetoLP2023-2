@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.GuitarraCwmo;
+import dao.GuitarraDAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -18,12 +21,21 @@ public class JDlgGuitarra extends javax.swing.JDialog {
      */
     
     JDlgGuitarraIA jDlgGuitarraIA;
+    GuitarraCwmo guitarraCwmo;
+    GuitarraDAO guitarraDAO;
+    GuitarraControle guitarraControle;
     public JDlgGuitarra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Guitarra");
         jDlgGuitarraIA = new JDlgGuitarraIA(null, true);
+        guitarraDAO = new GuitarraDAO();
+        List lista = guitarraDAO.listAll();
+        guitarraControle = new GuitarraControle();
+        guitarraControle.setList(lista);
+        jTable1.setModel(guitarraControle);
+                
     }
 
     /**
@@ -110,9 +122,8 @@ public class JDlgGuitarra extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
        jDlgGuitarraIA.setTitle("inclusão");
-        jDlgGuitarraIA.setVisible(true);
-
-        
+        jDlgGuitarraIA.setVisible(true);  
+ 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -121,8 +132,17 @@ public class JDlgGuitarra extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(Util.perguntar("Deseja excluir o usuario?")==true){
-        };
+        if(Util.perguntar("Deseja excluir a guitarra?")==true){
+        int sel = jTable1.getSelectedRow();
+        
+        GuitarraCwmo guitarraCwmo = guitarraControle.getBean(sel);
+        guitarraDAO.delete(guitarraCwmo);
+        
+        List lista = guitarraDAO.listAll();
+        guitarraControle.setList(lista);
+         Util.mensagem("registro excluido");  
+        }else{
+        Util.mensagem("Exclusão Cancelada");}
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**

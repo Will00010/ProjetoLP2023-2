@@ -25,7 +25,7 @@ public class ClientesControle extends AbstractTableModel {
     
     @Override
     public int getRowCount() {
-       return 10;
+    return lista.size();
     }
 
     @Override
@@ -37,19 +37,19 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-//        ClientesCwmo clientesCwmo = (ClientesCwmo) lista.get(rowIndex);
-//        if (columnIndex == 0){
-//        return clientesCwmo.getIdClienteCwmo();
-//        }
-//        if (columnIndex == 1){
-//        return clientesCwmo.getUsuariosCwmo();
-//        }
-//        if (columnIndex == 2){
-//        return clientesCwmo.getTelefoneCwmo();
-//        }
-//        if (columnIndex == 3){
-//        return clientesCwmo.getEmailCwmo();
-//        }
+        ClientesCwmo clientesCwmo = (ClientesCwmo) lista.get(rowIndex);
+        if (columnIndex == 0){
+        return clientesCwmo.getIdClienteCwmo();
+        }
+        if (columnIndex == 1){
+        return clientesCwmo.getUsuariosCwmo();
+        }
+        if (columnIndex == 2){
+        return clientesCwmo.getTelefoneCwmo();
+        }
+        if (columnIndex == 3){
+        return clientesCwmo.getEmailCwmo();
+        }
         return "";
     }
     

@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.VendedorCwmo;
+import dao.VendedorDAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -17,12 +20,20 @@ public class JDlgVendedor extends javax.swing.JDialog {
      * Creates new form JDlgVendedor
      */
      JDlgVendedorIA jDlgVendedorIA;
+     VendedorCwmo vendedorCwmo;
+     VendedorDAO vendedorDAO;
+     VendedorControle vendedorControle;
     public JDlgVendedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Vendedor");
         setLocationRelativeTo(null);
         jDlgVendedorIA = new JDlgVendedorIA(null, true);
+        vendedorDAO = new VendedorDAO();
+        List lista = vendedorDAO.listAll();
+        vendedorControle = new VendedorControle();
+        vendedorControle.setList(lista);
+        jTable1.setModel(vendedorControle);
     }
 
     /**
@@ -119,8 +130,17 @@ public class JDlgVendedor extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if(Util.perguntar("Deseja excluir o usuario?")==true){
-        };
+        if(Util.perguntar("Deseja excluir o vendedor?")==true){
+        int sel = jTable1.getSelectedRow();
+        
+        VendedorCwmo vendedorCwmo = vendedorControle.getBean(sel);
+        vendedorDAO.delete(vendedorCwmo);
+        
+        List lista = vendedorDAO.listAll();
+        vendedorControle.setList(lista);
+        Util.mensagem("registro excluido");
+        }else{
+        Util.mensagem("exclusão cancelada");}
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     /**

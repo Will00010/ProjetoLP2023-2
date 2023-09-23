@@ -1,10 +1,18 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package view;
 
+import bean.UsuariosCwmo;
+import dao.UsuariosDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 /**
@@ -14,6 +22,8 @@ import tools.Util;
 public class JDlgUsuarios extends javax.swing.JDialog {
    
     private boolean incluindo;
+    MaskFormatter mascaraCpf;
+    MaskFormatter mascaraData;
     /**
      * Creates new form JDlgUsuarios
      */
@@ -24,8 +34,56 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
         setLocationRelativeTo(null);
         setTitle("Usuario");
+        try{
+            mascaraCpf = new MaskFormatter("###.###.###-##");
+            mascaraData = new MaskFormatter("##/##/####");
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCpf));
+        jFmtDataNascimento.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
     }
-
+    public UsuariosCwmo viewBean(){
+    UsuariosCwmo usuariosCwmo = new UsuariosCwmo();
+    int id = Integer.valueOf(jTxtCodigo.getText());
+    usuariosCwmo.setIdusuariosCwmo(id);
+    usuariosCwmo.setNomeCwmo(jTxtNome.getText());
+    usuariosCwmo.setApelidoCwmo(jTxtApelido.getText());
+    usuariosCwmo.setCpfCwmo(JFmtCpf.getText());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        try{
+        usuariosCwmo.setDataNascimentoCwmo(formato.parse(jFmtDataNascimento.getText()));
+        } catch (ParseException ex) {
+            System.out.println("Erro seu otario" + ex.getMessage());
+        }
+        usuariosCwmo.setNivelCwmo(jCboNivel.getSelectedIndex());
+        usuariosCwmo.setSenhaCwmo(jPwfSenha.getText());
+        if(jchbAtivo.isSelected()==true){
+        usuariosCwmo.setAtivoCwmo("S");
+        }else{
+        usuariosCwmo.setAtivoCwmo("N");
+        }    
+    return usuariosCwmo;
+    }
+    
+    public void beanView(UsuariosCwmo usuariosCwmo){
+        String valor = String.valueOf(usuariosCwmo.getIdusuariosCwmo());
+        jTxtCodigo.setText(valor);
+        jTxtNome.setText(usuariosCwmo.getNomeCwmo());
+        jTxtApelido.setText(usuariosCwmo.getApelidoCwmo());
+        JFmtCpf.setText(usuariosCwmo.getCpfCwmo());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        jFmtDataNascimento.setText(formato.format(usuariosCwmo.getDataNascimentoCwmo()));
+        jPwfSenha.setText(usuariosCwmo.getSenhaCwmo());
+        jCboNivel.setSelectedIndex(usuariosCwmo.getNivelCwmo());
+        if(usuariosCwmo.getAtivoCwmo().equals("S") == true) {
+        jchbAtivo.setSelected(true);
+        }else{
+        jchbAtivo.setSelected(false);
+        }
+        
+                
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -291,7 +349,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         Util.habilitar(false, jBtnIncluir, jBtnAlterar,  jBtnPesquisar,jBtnExcluir);
         Util.limparCampos( jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel);
         incluindo = true;
-
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -309,6 +367,9 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         if (Util.perguntar("deseja excluir o registro?")== true) {
         Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        UsuariosCwmo usuariosCwmo = viewBean();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        usuariosDAO.delete(usuariosCwmo);
         Util.mensagem("Registro excluido");
         } else {
             Util.mensagem("Exclusão cancelada");
@@ -321,7 +382,15 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jFmtDataNascimentoActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-
+        UsuariosCwmo usuariosCwmo = viewBean();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        
+        if(incluindo==true){
+        usuariosDAO.insert(usuariosCwmo);
+        }else{
+        usuariosDAO.update(usuariosCwmo);
+        }
+        
         Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
         Util.limparCampos( jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel);

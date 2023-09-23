@@ -5,6 +5,11 @@
  */
 package view;
 
+import bean.VendedorCwmo;
+import dao.VendedorDAO;
+import java.util.Set;
+import tools.Util;
+
 /**
  *
  * @author carlo
@@ -19,7 +24,42 @@ public class JDlgVendedorIA extends javax.swing.JDialog {
         initComponents();
                 setLocationRelativeTo(null);
     }
-
+    public VendedorCwmo viewBean(){
+    VendedorCwmo vendedorCwmo = new VendedorCwmo();
+    vendedorCwmo.setIdvendedorCwmo(Util.strInt(jTxtCodVendedor.getText()));
+//    vendedorCwmo.setUsuariosCwmo(Util.strInt(jTxtCodUsuario.getText()));
+    if (jCboSexo.getSelectedIndex() == 0){
+    vendedorCwmo.setSexoCwmo("M");
+    } else {
+    vendedorCwmo.setSexoCwmo("F");}
+    vendedorCwmo.setPaisCwmo(jTxtPais.getText());
+    vendedorCwmo.setEstadoCwmo(jTxtEstado.getText());
+    vendedorCwmo.setCidadeCwmo(jTxtCidade.getText());
+    vendedorCwmo.setTelefoneCwmo(jFmtTelefone.getText());
+    vendedorCwmo.setRuaCwmo(jTxtRua.getText());
+    vendedorCwmo.setComplementoCwmo(jTxtComplemento.getText());
+    vendedorCwmo.setCepCwmo(jFmtCep.getText());
+    vendedorCwmo.setNumeroCwmo(jFmtNumeroCasa.getText());
+    return vendedorCwmo;
+    }
+    
+    public void beanView(VendedorCwmo vendedorCwmo){
+    jTxtCodVendedor.setText(Util.intStr(vendedorCwmo.getIdvendedorCwmo()));
+//    jTxtCodUsuario.setText(Util.intStr(vendedorCwmo.getUsuariosCwmo()));
+    if(vendedorCwmo.getSexoCwmo()=="M"){
+    jCboSexo.setSelectedIndex(0);
+    }else{
+    jCboSexo.setSelectedIndex(1);}
+    jTxtPais.setText(vendedorCwmo.getPaisCwmo());
+    jTxtEstado.setText(vendedorCwmo.getEstadoCwmo());
+    jTxtCidade.setText(vendedorCwmo.getCidadeCwmo());
+    jFmtTelefone.setText(vendedorCwmo.getTelefoneCwmo());
+    jTxtRua.setText(vendedorCwmo.getRuaCwmo());
+    jTxtComplemento.setText(vendedorCwmo.getComplementoCwmo());
+    jFmtCep.setText(vendedorCwmo.getCepCwmo());
+    jFmtNumeroCasa.setText(vendedorCwmo.getNumeroCwmo());
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,7 +287,12 @@ setVisible(false);
     }//GEN-LAST:event_jTxtCodVendedorActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        setVisible(false);
+    VendedorCwmo vendedorCwmo = viewBean();
+    VendedorDAO vendedorDAO = new VendedorDAO();
+    vendedorDAO.insert(vendedorCwmo);
+    
+    Util.limparCampos(jTxtCodVendedor,jTxtCodUsuario,jCboSexo,jTxtPais,jTxtEstado,jFmtTelefone,jTxtCidade,jTxtRua,jTxtComplemento,jFmtCep,jFmtNumeroCasa);
+    Util.mensagem("incluido");
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     /**

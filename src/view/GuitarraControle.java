@@ -5,7 +5,7 @@
  */
 package view;
 
-import bean.UsuariosCwmo;
+import bean.GuitarraCwmo;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,15 +13,15 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author carlo
  */
-public class UsuariosControle  extends AbstractTableModel{
+public class GuitarraControle  extends AbstractTableModel{
     
     List lista;
     
     public void setList(List lista){
     this.lista = lista;
     };
-    public UsuariosCwmo getBean(int row){
-    return (UsuariosCwmo)lista.get(row);
+    public GuitarraCwmo getBean(int row){
+    return (GuitarraCwmo)lista.get(row);
     }
     
     @Override
@@ -37,18 +37,18 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      UsuariosCwmo usuariosCwmo = (UsuariosCwmo) lista.get(rowIndex);
+      GuitarraCwmo guitarraCwmo = (GuitarraCwmo) lista.get(rowIndex);
         if (columnIndex == 0){
-        return usuariosCwmo.getIdusuariosCwmo();
+        return guitarraCwmo.getIdprodutosCwmo();
         }
         if (columnIndex == 1){
-        return usuariosCwmo.getNomeCwmo();
+        return guitarraCwmo.getModeloCwmo();
         }
         if (columnIndex == 2){
-        return usuariosCwmo.getApelidoCwmo();
+        return guitarraCwmo.getCaptadoresCwmo();
         }
         if (columnIndex == 3){
-        return usuariosCwmo.getCpfCwmo();
+        return guitarraCwmo.getPonteCwmo();
         }
       return "";
     }
@@ -59,13 +59,13 @@ return 4;
         return "id";
         }
         if (column == 1){
-        return "nome";
+        return "Modelo";
         }
         if (column == 2){
-        return "apelido";
+        return "Captadores";
         }
         if (column == 3){
-        return "cpf";
+        return "Ponte";
         }
                
         return "";

@@ -5,6 +5,10 @@
  */
 package view;
 
+import bean.ClientesCwmo;
+import dao.ClientesDAO;
+import java.util.List;
+
 /**
  *
  * @author carlo
@@ -18,7 +22,11 @@ public class JDlgClientesPesquisa extends javax.swing.JDialog {
     public JDlgClientesPesquisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         clientesControle = new ClientesControle();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = clientesDAO.listAll();
+        clientesControle.setList(lista);
         jTable1.setModel(clientesControle);
                 setLocationRelativeTo(null);
     }
@@ -99,7 +107,10 @@ public class JDlgClientesPesquisa extends javax.swing.JDialog {
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
         int rowSel = jTable1.getSelectedRow();
+        ClientesCwmo clientesCwmo = clientesControle.getBean(rowSel);
+        jDlgClientes.beanView(clientesCwmo);
         setVisible(false);
+        
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed

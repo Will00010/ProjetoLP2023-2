@@ -9,6 +9,7 @@ import bean.GuitarraCwmo;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -45,7 +46,12 @@ public class GuitarraDAO extends DAO_Abstract  {
 
     @Override
     public Object list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(GuitarraCwmo.class);
+        criteria.add(Restrictions.eq("id", id));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return(ArrayList) lista;
     }
 
     @Override

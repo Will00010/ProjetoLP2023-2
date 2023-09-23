@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.GuitarraCwmo;
+import dao.GuitarraDAO;
+import java.util.List;
 import tools.Util;
 
 /**
@@ -21,6 +24,26 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Guitarras");
+    }
+    public GuitarraCwmo viewBean(){
+    GuitarraCwmo guitarraCwmo = new GuitarraCwmo();
+    guitarraCwmo.setIdprodutosCwmo(Util.strInt(jTxtCodGuitarra.getText()));
+    guitarraCwmo.setCanhotoDestroCwmo(jTxtCanhoto.getText());
+    guitarraCwmo.setCaptadoresCwmo(jTxtCaptadores.getText());
+    guitarraCwmo.setModeloCwmo(jTxtModelo.getText());
+    guitarraCwmo.setPonteCwmo(jTxtPonte.getText());
+    guitarraCwmo.setTipoCwmo(jTxtTipo.getText());
+    guitarraCwmo.setTrastesCwmo(jTxtTrastes.getText());   
+    return guitarraCwmo;    
+    }
+    public void beanView(GuitarraCwmo guitarraCwmo){
+    jTxtCodGuitarra.setText(Util.intStr(guitarraCwmo.getIdprodutosCwmo()));
+    jTxtCanhoto.setText(guitarraCwmo.getCanhotoDestroCwmo());
+    jTxtCaptadores.setText(guitarraCwmo.getCaptadoresCwmo());
+    jTxtModelo.setText(guitarraCwmo.getModeloCwmo());
+    jTxtPonte.setText(guitarraCwmo.getPonteCwmo());
+    jTxtTipo.setText(guitarraCwmo.getTipoCwmo());
+    jTxtTrastes.setText(guitarraCwmo.getTrastesCwmo());
     }
 
     /**
@@ -45,9 +68,9 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         jTxtCanhoto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTxtTrastes = new javax.swing.JTextField();
-        jCboTipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jTxtTipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -83,8 +106,6 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
 
         jLabel2.setText("Tipo de Guitarra");
 
-        jCboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "strato", "lesPaul", "outro" }));
-
         jLabel3.setText("Trastes");
 
         jLabel4.setText("Modelo");
@@ -105,10 +126,10 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
                                         .addComponent(jTxtPonte, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jTxtModelo, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTxtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jCboTipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 120, Short.MAX_VALUE)
-                                                .addComponent(jTxtCodGuitarra, javax.swing.GroupLayout.Alignment.LEADING))
+                                                .addComponent(jTxtCodGuitarra, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTxtTipo))
                                             .addComponent(jLabel4)))
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
@@ -139,8 +160,8 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtTrastes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTxtTrastes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(26, 26, 26)))
@@ -170,11 +191,17 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-            setVisible(false);
+    GuitarraCwmo guitarraCwmo = viewBean();
+    GuitarraDAO guitarraDAO = new GuitarraDAO();
+    guitarraDAO.insert(guitarraCwmo);
+    
+    Util.limparCampos(jTxtCodGuitarra,jTxtCanhoto,jTxtCaptadores,jTxtModelo,jTxtPonte,jTxtTipo,jTxtTrastes);
+    Util.mensagem("incluido");
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
             setVisible(false);
+
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jTxtCodGuitarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodGuitarraActionPerformed
@@ -226,7 +253,6 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnConfirmar;
-    private javax.swing.JComboBox<String> jCboTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -239,6 +265,7 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     private javax.swing.JTextField jTxtCodGuitarra;
     private javax.swing.JTextField jTxtModelo;
     private javax.swing.JTextField jTxtPonte;
+    private javax.swing.JTextField jTxtTipo;
     private javax.swing.JTextField jTxtTrastes;
     // End of variables declaration//GEN-END:variables
 }

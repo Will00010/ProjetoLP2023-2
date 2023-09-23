@@ -5,6 +5,8 @@
  */
 package view;
 
+import bean.UsuariosCwmo;
+import dao.UsuariosDAO;
 import java.util.List;
 
 /**
@@ -22,6 +24,9 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         usuariosControle = new UsuariosControle();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = usuariosDAO.listAll();
+        usuariosControle.setList(lista);
         jTable1.setModel(usuariosControle);
                 setLocationRelativeTo(null);
     }
@@ -100,8 +105,11 @@ public class JDlgUsuariosPesquisa extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-        int rowSel = jTable1.getSelectedRow();
+        int rowSel = jTable1.getSelectedRow();       
+        UsuariosCwmo usuariosCwmo = usuariosControle.getBean(rowSel);
+        jDlgUsuarios.beanView(usuariosCwmo);
         setVisible(false);
+        
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
