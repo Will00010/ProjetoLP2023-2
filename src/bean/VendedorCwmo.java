@@ -18,8 +18,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="vendedor_cwmo"
-    ,catalog="test"
-// , catalgo="carlos_oliveira"     
+//    ,catalog="test"
+   , catalog="db_carlos_oliveira"      
 )
 public class VendedorCwmo  implements java.io.Serializable {
 

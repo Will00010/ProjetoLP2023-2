@@ -19,8 +19,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="usuarios_cwmo"
-    ,catalog="test"
-// , catalgo="carlos_oliveira"     
+//    ,catalog="test"
+   , catalog="db_carlos_oliveira"       
 )
 public class UsuariosCwmo  implements java.io.Serializable {
 

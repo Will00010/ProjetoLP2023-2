@@ -9,6 +9,7 @@ import bean.UsuariosCwmo;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -65,5 +66,32 @@ public class UsuariosDAO extends DAO_Abstract  {
         return(ArrayList) lista;
     }
     
+       public List listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuariosCwmo.class);
+        criteria.add(Restrictions.like("nomeCwmo", "%"+  nome +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+ 
+       public List listCpf(String cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuariosCwmo.class);
+        criteria.add(Restrictions.like("cpfCwmo", "%"+  cpf +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+        public List listNomeCpf(String nome, String cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(UsuariosCwmo.class);
+        criteria.add(Restrictions.like("nomeCwmo", "%"+  nome +"%"));
+        criteria.add(Restrictions.like("cpfCwmo", "%"+  cpf +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }
+       
 }
 
