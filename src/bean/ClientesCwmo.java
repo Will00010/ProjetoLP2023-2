@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="clientes_cwmo"
     ,catalog="test"
+// , catalgo="carlos_oliveira"        
 )
 public class ClientesCwmo  implements java.io.Serializable {
 
@@ -96,7 +97,8 @@ public class ClientesCwmo  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fkUsuario_cwmo", nullable=false)
+    @JoinColumn(name="fkUsuario_cwmo", nullable=true)
+//teste
     public UsuariosCwmo getUsuariosCwmo() {
         return this.usuariosCwmo;
     }
