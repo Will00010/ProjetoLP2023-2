@@ -5,6 +5,8 @@
  */
 package view;
 
+import query.JDlgConsultasUsuarios;
+
 /**
  *
  * @author u07032685110
@@ -34,6 +36,7 @@ setExtendedState(MAXIMIZED_BOTH);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMnuPrincipal = new javax.swing.JMenu();
         jMnuUsuarios = new javax.swing.JMenuItem();
@@ -45,6 +48,12 @@ setExtendedState(MAXIMIZED_BOTH);
         jMnuMovimento = new javax.swing.JMenu();
         jMnuVendas = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMnuMovimento1 = new javax.swing.JMenu();
+        jMnuMovimento2 = new javax.swing.JMenu();
+        jMnuVendas1 = new javax.swing.JMenuItem();
+        jMnuMovimento3 = new javax.swing.JMenu();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -126,7 +135,30 @@ setExtendedState(MAXIMIZED_BOTH);
         jMenuItem2.setText("Vendas Produtos");
         jMnuMovimento.add(jMenuItem2);
 
+        jMnuMovimento1.setMnemonic('M');
+        jMnuMovimento1.setText("Movimento");
+        jMnuMovimento.add(jMnuMovimento1);
+
         jMenuBar2.add(jMnuMovimento);
+
+        jMnuMovimento2.setMnemonic('M');
+        jMnuMovimento2.setText("Consultas");
+
+        jMnuVendas1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMnuVendas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        jMnuVendas1.setText("Consulta Usuario");
+        jMnuVendas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuVendas1ActionPerformed(evt);
+            }
+        });
+        jMnuMovimento2.add(jMnuVendas1);
+
+        jMnuMovimento3.setMnemonic('M');
+        jMnuMovimento3.setText("consultas");
+        jMnuMovimento2.add(jMnuMovimento3);
+
+        jMenuBar2.add(jMnuMovimento2);
 
         setJMenuBar(jMenuBar2);
 
@@ -160,6 +192,11 @@ setExtendedState(MAXIMIZED_BOTH);
     private void jMnuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendasActionPerformed
 
     }//GEN-LAST:event_jMnuVendasActionPerformed
+
+    private void jMnuVendas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendas1ActionPerformed
+   JDlgConsultasUsuarios consultaUsuario = new JDlgConsultasUsuarios(null,true);
+   consultaUsuario.setVisible(true);
+    }//GEN-LAST:event_jMnuVendas1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,15 +235,20 @@ setExtendedState(MAXIMIZED_BOTH);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMnuCliente;
     private javax.swing.JMenuItem jMnuGuitarra;
     private javax.swing.JMenu jMnuMovimento;
+    private javax.swing.JMenu jMnuMovimento1;
+    private javax.swing.JMenu jMnuMovimento2;
+    private javax.swing.JMenu jMnuMovimento3;
     private javax.swing.JMenu jMnuPrincipal;
     private javax.swing.JMenuItem jMnuSair;
     private javax.swing.JMenuItem jMnuUsuarios;
     private javax.swing.JMenuItem jMnuVendas;
+    private javax.swing.JMenuItem jMnuVendas1;
     private javax.swing.JMenuItem jMnuVendedor;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables

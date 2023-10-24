@@ -19,6 +19,7 @@ public class GuitarraControle  extends AbstractTableModel{
     
     public void setList(List lista){
     this.lista = lista;
+    this.fireTableDataChanged();
     };
     public GuitarraCwmo getBean(int row){
     return (GuitarraCwmo)lista.get(row);

@@ -18,6 +18,7 @@ public class ClientesControle extends AbstractTableModel {
     
     public void setList(List lista){
     this.lista = lista;
+    this.fireTableDataChanged();
     };
     public ClientesCwmo getBean(int row){
     return (ClientesCwmo)lista.get(row);
