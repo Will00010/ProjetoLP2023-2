@@ -65,4 +65,31 @@ public class VendedorDAO extends DAO_Abstract  {
         return(ArrayList) lista;
     }
     
+           public List listTelefone(String tel) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendedorCwmo.class);
+        criteria.add(Restrictions.like("telefoneCwmo", "%"+  tel +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+ 
+       public List listCidade(String city) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendedorCwmo.class);
+        criteria.add(Restrictions.like("cidadeCwmo", "%"+  city +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+}
+        public List listTelefoneCidade(String tel, String city) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(VendedorCwmo.class);
+        criteria.add(Restrictions.like("telefoneCwmo", "%"+  tel +"%"));
+        criteria.add(Restrictions.like("cidadeCwmo", "%"+  city +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }
+    
 }

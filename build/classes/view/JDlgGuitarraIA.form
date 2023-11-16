@@ -50,9 +50,9 @@
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTxtCaptadores" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTxtCanhoto" alignment="0" pref="120" max="32767" attributes="0"/>
+                                  <Component id="jTxtCaptadores" alignment="0" pref="120" max="32767" attributes="0"/>
                                   <Component id="jTxtTrastes" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jCboCanhoto" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -107,7 +107,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTxtPonte" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtCanhoto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCboCanhoto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="156" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -173,8 +173,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtCodGuitarraActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtCanhoto">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tipo de Guitarra"/>
@@ -193,6 +191,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtTipo">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jCboCanhoto">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Canhoto"/>
+            <StringItem index="1" value="Destro"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

@@ -5,6 +5,7 @@
  */
 package view;
 
+import controles.ClientesControle;
 import bean.ClientesCwmo;
 import dao.ClientesDAO;
 import java.util.List;

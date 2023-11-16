@@ -5,6 +5,7 @@
  */
 package view;
 
+import controles.VendedorControle;
 import bean.VendedorCwmo;
 import dao.VendedorDAO;
 import java.util.List;
@@ -121,7 +122,8 @@ public class JDlgVendedor extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         jDlgVendedorIA.setTitle("inclusão");
         jDlgVendedorIA.setVisible(true);
-
+        List lista = vendedorDAO.listAll();
+        vendedorControle.setList(lista);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed

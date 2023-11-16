@@ -5,6 +5,7 @@
  */
 package view;
 
+import controles.GuitarraControle;
 import bean.GuitarraCwmo;
 import dao.GuitarraDAO;
 import java.util.List;
@@ -122,8 +123,9 @@ public class JDlgGuitarra extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
        jDlgGuitarraIA.setTitle("inclusão");
-        jDlgGuitarraIA.setVisible(true);  
- 
+    jDlgGuitarraIA.setVisible(true);  
+        List lista = guitarraDAO.listAll();
+        guitarraControle.setList(lista); 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -133,11 +135,9 @@ public class JDlgGuitarra extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         if(Util.perguntar("Deseja excluir a guitarra?")==true){
-        int sel = jTable1.getSelectedRow();
-        
+        int sel = jTable1.getSelectedRow(); 
         GuitarraCwmo guitarraCwmo = guitarraControle.getBean(sel);
-        guitarraDAO.delete(guitarraCwmo);
-        
+        guitarraDAO.delete(guitarraCwmo);   
         List lista = guitarraDAO.listAll();
         guitarraControle.setList(lista);
          Util.mensagem("registro excluido");  

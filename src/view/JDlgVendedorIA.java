@@ -5,6 +5,7 @@
  */
 package view;
 
+import bean.UsuariosCwmo;
 import bean.VendedorCwmo;
 import dao.VendedorDAO;
 import java.util.Set;
@@ -27,6 +28,11 @@ public class JDlgVendedorIA extends javax.swing.JDialog {
     public VendedorCwmo viewBean(){
     VendedorCwmo vendedorCwmo = new VendedorCwmo();
     vendedorCwmo.setIdvendedorCwmo(Util.strInt(jTxtCodVendedor.getText()));
+    
+    UsuariosCwmo usuariosCwmo = new UsuariosCwmo();
+    usuariosCwmo.setIdusuariosCwmo(Util.strInt(jTxtCodUsuario.getText()));
+    vendedorCwmo.setUsuariosCwmo(usuariosCwmo);
+    
 //    vendedorCwmo.setUsuariosCwmo(Util.strInt(jTxtCodUsuario.getText()));
     if (jCboSexo.getSelectedIndex() == 0){
     vendedorCwmo.setSexoCwmo("M");
@@ -45,6 +51,9 @@ public class JDlgVendedorIA extends javax.swing.JDialog {
     
     public void beanView(VendedorCwmo vendedorCwmo){
     jTxtCodVendedor.setText(Util.intStr(vendedorCwmo.getIdvendedorCwmo()));
+    
+    UsuariosCwmo usuariosCwmo = vendedorCwmo.getUsuariosCwmo();
+    jTxtCodUsuario.setText(String.valueOf(usuariosCwmo.getIdusuariosCwmo()));
 //    jTxtCodUsuario.setText(Util.intStr(vendedorCwmo.getUsuariosCwmo()));
     if(vendedorCwmo.getSexoCwmo()=="M"){
     jCboSexo.setSelectedIndex(0);

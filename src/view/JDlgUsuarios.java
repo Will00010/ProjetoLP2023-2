@@ -222,7 +222,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
         jLabel7.setText("senha");
 
-        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visitante", "Cliente", "Adm", "Especial" }));
         jCboNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCboNivelActionPerformed(evt);

@@ -18,8 +18,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="clientes_cwmo"
-//     ,catalog="test"
-, catalog="db_carlos_oliveira"        
+     ,catalog="test"
+//, catalog="db_carlos_oliveira"        
 )
 public class ClientesCwmo  implements java.io.Serializable {
 
@@ -39,14 +39,14 @@ public class ClientesCwmo  implements java.io.Serializable {
      private String numeroCwmo;
      private String complementoCwmo;
      private String ruaCwmo;
-     private String clientesCwmo;
+     private int clientesCwmo;
 
 
     public ClientesCwmo() {
     }
 
 	
-    public ClientesCwmo(int idClienteCwmo, UsuariosCwmo usuariosCwmo, String emailCwmo, String telefoneCwmo, String sexoCwmo, String interessesCwmo, String rgCwmo, String paisCwmo, String estadoCwmo, String cidadeCwmo, String bairroCwmo, String cepCwmo, String numeroCwmo, String complementoCwmo, String ruaCwmo, String clientesCwmo) {
+    public ClientesCwmo(int idClienteCwmo, UsuariosCwmo usuariosCwmo, String emailCwmo, String telefoneCwmo, String sexoCwmo, String interessesCwmo, String rgCwmo, String paisCwmo, String estadoCwmo, String cidadeCwmo, String bairroCwmo, String cepCwmo, String numeroCwmo, String complementoCwmo, String ruaCwmo, int clientesCwmo) {
         this.idClienteCwmo = idClienteCwmo;
         this.usuariosCwmo = usuariosCwmo;
         this.emailCwmo = emailCwmo;
@@ -64,7 +64,7 @@ public class ClientesCwmo  implements java.io.Serializable {
         this.ruaCwmo = ruaCwmo;
         this.clientesCwmo = clientesCwmo;
     }
-    public ClientesCwmo(int idClienteCwmo, UsuariosCwmo usuariosCwmo, String emailCwmo, String telefoneCwmo, String sexoCwmo, String interessesCwmo, String rgCwmo, String paisCwmo, String estadoCwmo, String cidadeCwmo, String bairroCwmo, String cepCwmo, String numeroCwmo, String complementoCwmo, String ruaCwmo, String clientesCwmo, Set vendasCwmos) {
+    public ClientesCwmo(int idClienteCwmo, UsuariosCwmo usuariosCwmo, String emailCwmo, String telefoneCwmo, String sexoCwmo, String interessesCwmo, String rgCwmo, String paisCwmo, String estadoCwmo, String cidadeCwmo, String bairroCwmo, String cepCwmo, String numeroCwmo, String complementoCwmo, String ruaCwmo, int clientesCwmo, Set vendasCwmos) {
        this.idClienteCwmo = idClienteCwmo;
        this.usuariosCwmo = usuariosCwmo;
        this.emailCwmo = emailCwmo;
@@ -239,11 +239,11 @@ public class ClientesCwmo  implements java.io.Serializable {
 
     
     @Column(name="clientes_cwmo", nullable=false, length=45)
-    public String getClientesCwmo() {
+    public int getClientesCwmo() {
         return this.clientesCwmo;
     }
     
-    public void setClientesCwmo(String clientesCwmo) {
+    public void setClientesCwmo(int clientesCwmo) {
         this.clientesCwmo = clientesCwmo;
     }
 

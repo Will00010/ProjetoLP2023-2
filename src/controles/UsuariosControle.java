@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controles;
 
-import bean.GuitarraCwmo;
+import bean.UsuariosCwmo;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author carlo
  */
-public class GuitarraControle  extends AbstractTableModel{
+public class UsuariosControle  extends AbstractTableModel{
     
     List lista;
     
@@ -21,8 +21,8 @@ public class GuitarraControle  extends AbstractTableModel{
     this.lista = lista;
     this.fireTableDataChanged();
     };
-    public GuitarraCwmo getBean(int row){
-    return (GuitarraCwmo)lista.get(row);
+    public UsuariosCwmo getBean(int row){
+    return (UsuariosCwmo)lista.get(row);
     }
     
     @Override
@@ -38,18 +38,18 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      GuitarraCwmo guitarraCwmo = (GuitarraCwmo) lista.get(rowIndex);
+      UsuariosCwmo usuariosCwmo = (UsuariosCwmo) lista.get(rowIndex);
         if (columnIndex == 0){
-        return guitarraCwmo.getIdprodutosCwmo();
+        return usuariosCwmo.getIdusuariosCwmo();
         }
         if (columnIndex == 1){
-        return guitarraCwmo.getModeloCwmo();
+        return usuariosCwmo.getNomeCwmo();
         }
         if (columnIndex == 2){
-        return guitarraCwmo.getCaptadoresCwmo();
+        return usuariosCwmo.getApelidoCwmo();
         }
         if (columnIndex == 3){
-        return guitarraCwmo.getPonteCwmo();
+        return usuariosCwmo.getCpfCwmo();
         }
       return "";
     }
@@ -60,13 +60,13 @@ return 4;
         return "id";
         }
         if (column == 1){
-        return "Modelo";
+        return "nome";
         }
         if (column == 2){
-        return "Captadores";
+        return "apelido";
         }
         if (column == 3){
-        return "Ponte";
+        return "cpf";
         }
                
         return "";

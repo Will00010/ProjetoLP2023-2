@@ -1,11 +1,13 @@
+package controles;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
 
-import bean.VendedorCwmo;
+
+import bean.ClientesCwmo;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,62 +15,62 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author carlo
  */
-public class VendedorControle extends AbstractTableModel{
-    
-    List lista;
+public class ClientesControle extends AbstractTableModel {
+  List lista;
     
     public void setList(List lista){
     this.lista = lista;
     this.fireTableDataChanged();
     };
-    public VendedorCwmo getBean(int row){
-    return (VendedorCwmo)lista.get(row);
+    public ClientesCwmo getBean(int row){
+    return (ClientesCwmo)lista.get(row);
     }
     
     @Override
     public int getRowCount() {
-       return lista.size();
+    return lista.size();
     }
 
     @Override
     public int getColumnCount() {
 return 4;
     }
-
+    
+    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      VendedorCwmo vendedorCwmo = (VendedorCwmo) lista.get(rowIndex);
+        ClientesCwmo clientesCwmo = (ClientesCwmo) lista.get(rowIndex);
         if (columnIndex == 0){
-        return vendedorCwmo.getIdvendedorCwmo();
+        return clientesCwmo.getIdClienteCwmo();
         }
-        if (columnIndex == 1){
-        return vendedorCwmo.getTelefoneCwmo();
+        if (columnIndex == 1 && clientesCwmo.getUsuariosCwmo() != null){
+        return clientesCwmo.getUsuariosCwmo().getIdusuariosCwmo();
         }
         if (columnIndex == 2){
-        return vendedorCwmo.getComplementoCwmo();
+        return clientesCwmo.getTelefoneCwmo();
         }
         if (columnIndex == 3){
-        return vendedorCwmo.getEstadoCwmo();
+        return clientesCwmo.getEmailCwmo();
         }
-      return "";
+        return "";
     }
     
     @Override
     public String getColumnName(int column){
         if (column == 0){
-        return "id";
+        return "ID cliente";
         }
         if (column == 1){
-        return "Telefon";
+        return "FK usuario";
         }
         if (column == 2){
-        return "Complemento";
+        return "telefone";
         }
         if (column == 3){
-        return "Estado";
+        return "email";
         }
                
         return "";
-    };
+      };
 }

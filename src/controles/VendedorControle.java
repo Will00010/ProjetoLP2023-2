@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controles;
 
-import bean.UsuariosCwmo;
+import bean.VendedorCwmo;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author carlo
  */
-public class UsuariosControle  extends AbstractTableModel{
+public class VendedorControle extends AbstractTableModel{
     
     List lista;
     
@@ -21,8 +21,8 @@ public class UsuariosControle  extends AbstractTableModel{
     this.lista = lista;
     this.fireTableDataChanged();
     };
-    public UsuariosCwmo getBean(int row){
-    return (UsuariosCwmo)lista.get(row);
+    public VendedorCwmo getBean(int row){
+    return (VendedorCwmo)lista.get(row);
     }
     
     @Override
@@ -38,18 +38,18 @@ return 4;
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        
-      UsuariosCwmo usuariosCwmo = (UsuariosCwmo) lista.get(rowIndex);
+      VendedorCwmo vendedorCwmo = (VendedorCwmo) lista.get(rowIndex);
         if (columnIndex == 0){
-        return usuariosCwmo.getIdusuariosCwmo();
+        return vendedorCwmo.getIdvendedorCwmo();
         }
         if (columnIndex == 1){
-        return usuariosCwmo.getNomeCwmo();
+        return vendedorCwmo.getTelefoneCwmo();
         }
         if (columnIndex == 2){
-        return usuariosCwmo.getApelidoCwmo();
+        return vendedorCwmo.getCidadeCwmo();
         }
         if (columnIndex == 3){
-        return usuariosCwmo.getCpfCwmo();
+        return vendedorCwmo.getEstadoCwmo();
         }
       return "";
     }
@@ -60,13 +60,13 @@ return 4;
         return "id";
         }
         if (column == 1){
-        return "nome";
+        return "Telefone";
         }
         if (column == 2){
-        return "apelido";
+        return "Cidade";
         }
         if (column == 3){
-        return "cpf";
+        return "Estado";
         }
                
         return "";

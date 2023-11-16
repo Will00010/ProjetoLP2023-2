@@ -64,5 +64,30 @@ public class ClientesDAO extends DAO_Abstract  {
         session.getTransaction().commit();
         return(ArrayList) lista;
     }
-    
+    public List listInteresses(String interesses){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
+        criteria.add(Restrictions.like("interessesCwmo", "%"+  interesses +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+//            jTxtId.setText(Util.intStr(clientesCwmo.getIdClienteCwmo()));
+    public List listEC(int ec){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
+        criteria.add(Restrictions.eq("clientesCwmo", ec));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+        public List listInteressesEC(String interesses, int ec) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(ClientesCwmo.class);
+        criteria.add(Restrictions.like("interessesCwmo", "%"+  interesses +"%"));
+        criteria.add(Restrictions.eq("clientesCwmo",  ec));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }    
 }

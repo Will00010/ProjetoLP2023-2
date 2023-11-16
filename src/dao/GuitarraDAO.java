@@ -63,5 +63,32 @@ public class GuitarraDAO extends DAO_Abstract  {
         return(ArrayList) lista;
     }
     
+    public List listTipo(String tipo){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(GuitarraCwmo.class);
+        criteria.add(Restrictions.like("tipoCwmo", "%"+  tipo +"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+//            jTxtId.setText(Util.intStr(clientesCwmo.getIdClienteCwmo()));
+    public List listCanhoto(int canhoto){
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(GuitarraCwmo.class);
+        criteria.add(Restrictions.eq("canhotoDestroCwmo", canhoto));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+        public List listTipoCanhoto(String tipo, int canhoto) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(GuitarraCwmo.class);
+        criteria.add(Restrictions.like("tipoCwmo", "%"+  tipo +"%"));
+        criteria.add(Restrictions.eq("canhotoDestroCwmo",  canhoto));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+        }
+    
 }
 

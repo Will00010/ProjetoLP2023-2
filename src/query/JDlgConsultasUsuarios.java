@@ -7,7 +7,7 @@ package query;
 
 import dao.UsuariosDAO;
 import java.util.List;
-import view.UsuariosControle;
+import controles.UsuariosControle;
 
 /**
  *
@@ -23,6 +23,7 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Consulta Usuarios");
         usuariosDAO = new UsuariosDAO();
        List lista = usuariosDAO.listAll();
        usuariosControle = new UsuariosControle();
@@ -54,6 +55,12 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
+        jTxtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtNomeActionPerformed(evt);
+            }
+        });
+
         jBtnConsultar.setText("Consultar");
         jBtnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +83,7 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jBtnConsultar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -123,36 +130,40 @@ public class JDlgConsultasUsuarios extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-        if(jTxtNome.getText().equals("") && jTxtCpf.getText().equals("")){
-        List lista = usuariosDAO.listAll();
-        usuariosControle.setList(lista); 
-        } else {
-            if(! jTxtNome.getText().equals("") && ! jTxtCpf.getText().equals("")){
-            List lista = usuariosDAO.listNomeCpf(jTxtNome.getText(), jTxtCpf.getText());
+        if (jTxtNome.getText().equals("") && jTxtCpf.getText().equals("")) {
+            List lista = usuariosDAO.listAll();
             usuariosControle.setList(lista);
-             }else{
-               if(!  jTxtNome.getText().equals("")){
-               List lista = usuariosDAO.listNome(jTxtNome.getText());
-               usuariosControle.setList(lista);
-                }else{
-                   if(!  jTxtCpf.getText().equals("")){
-                   List lista = usuariosDAO.listCpf(jTxtCpf.getText());
-                   usuariosControle.setList(lista);
-        }
-        }
-        }
+        } else {
+            if (!jTxtNome.getText().equals("") && !jTxtCpf.getText().equals("")) {
+                List lista = usuariosDAO.listNomeCpf(jTxtNome.getText(), jTxtCpf.getText());
+                usuariosControle.setList(lista);
+            } else {
+                if (!jTxtNome.getText().equals("")) {
+                    List lista = usuariosDAO.listNome(jTxtNome.getText());
+                    usuariosControle.setList(lista);
+                } else {
+                    if (!jTxtCpf.getText().equals("")) {
+                        List lista = usuariosDAO.listCpf(jTxtCpf.getText());
+                        usuariosControle.setList(lista);
+                    }
+                }
+            }
         }
         
 
         
     }//GEN-LAST:event_jBtnConsultarActionPerformed
+
+    private void jTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtNomeActionPerformed
 
     /**
      * @param args the command line arguments

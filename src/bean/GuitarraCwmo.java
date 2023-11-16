@@ -16,8 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="guitarra_cwmo"
-//    ,catalog="test"
-   , catalog="db_carlos_oliveira"     
+    ,catalog="test"
+//   , catalog="db_carlos_oliveira"     
 )
 public class GuitarraCwmo  implements java.io.Serializable {
 
@@ -28,14 +28,14 @@ public class GuitarraCwmo  implements java.io.Serializable {
      private String modeloCwmo;
      private String captadoresCwmo;
      private String ponteCwmo;
-     private String canhotoDestroCwmo;
+     private int canhotoDestroCwmo;
 
 
     public GuitarraCwmo() {
     }
 
 	
-    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, String canhotoDestroCwmo) {
+    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, int canhotoDestroCwmo) {
         this.idprodutosCwmo = idprodutosCwmo;
         this.tipoCwmo = tipoCwmo;
         this.trastesCwmo = trastesCwmo;
@@ -44,7 +44,7 @@ public class GuitarraCwmo  implements java.io.Serializable {
         this.ponteCwmo = ponteCwmo;
         this.canhotoDestroCwmo = canhotoDestroCwmo;
     }
-    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, String canhotoDestroCwmo, Set vendasProdutoCwmos) {
+    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, int canhotoDestroCwmo, Set vendasProdutoCwmos) {
        this.idprodutosCwmo = idprodutosCwmo;
        this.tipoCwmo = tipoCwmo;
        this.trastesCwmo = trastesCwmo;
@@ -119,11 +119,11 @@ public class GuitarraCwmo  implements java.io.Serializable {
 
     
     @Column(name="canhotoDestro_cwmo", nullable=false, length=10)
-    public String getCanhotoDestroCwmo() {
+    public int getCanhotoDestroCwmo() {
         return this.canhotoDestroCwmo;
     }
     
-    public void setCanhotoDestroCwmo(String canhotoDestroCwmo) {
+    public void setCanhotoDestroCwmo(int canhotoDestroCwmo) {
         this.canhotoDestroCwmo = canhotoDestroCwmo;
     }
 

@@ -5,7 +5,8 @@
  */
 package view;
 
-
+import bean.UsuariosCwmo;
+import dao.UsuariosDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +14,14 @@ import javax.swing.JOptionPane;
  * @author carlo
  */
 public class JFrmLogin extends javax.swing.JFrame {
-    String usuario = "Will";
-    String senha = "1234";
+
     JFrmPrincipal JFrmPrincipal = new JFrmPrincipal();
+
     public JFrmLogin() {
-               initComponents();
+        initComponents();
         setLocationRelativeTo(null);
+        String apelido = "";
+        String senha = "";
     }
 
     /**
@@ -30,8 +33,9 @@ public class JFrmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jLabel1 = new javax.swing.JLabel();
-        jTxtUsuario = new javax.swing.JTextField();
+        jTxtApelido = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPwfSenha = new javax.swing.JPasswordField();
         jBtnConfirmar = new javax.swing.JButton();
@@ -39,11 +43,11 @@ public class JFrmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Usuario:");
+        jLabel1.setText("Apelido:");
 
-        jTxtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jTxtApelido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtUsuarioActionPerformed(evt);
+                jTxtApelidoActionPerformed(evt);
             }
         });
 
@@ -80,15 +84,15 @@ public class JFrmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBtnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(31, 31, 31)
                         .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
+                        .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jPwfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(jTxtUsuario))
+                            .addComponent(jTxtApelido))
                         .addGap(131, 131, 131))))
         );
         layout.setVerticalGroup(
@@ -97,7 +101,7 @@ public class JFrmLogin extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -112,25 +116,31 @@ public class JFrmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsuarioActionPerformed
+    private void jTxtApelidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtApelidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtUsuarioActionPerformed
+    }//GEN-LAST:event_jTxtApelidoActionPerformed
 
     private void jPwfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPwfSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPwfSenhaActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-    if(jTxtUsuario.getText().equals(usuario) && jPwfSenha.getText().equals(senha)){
-    JFrmPrincipal.setVisible(true);       // TODO add
-        }else{
-     System.out.println("login errado");
-}  
+        String apelido = jTxtApelido.getText();
+        String senha = jPwfSenha.getText();
+
+        UsuariosDAO usuariosDao = new UsuariosDAO();
+        UsuariosCwmo usuarioAutenticado = usuariosDao.login(apelido, senha);
+
+        if (usuarioAutenticado != null) {
+            JFrmPrincipal JFrmPrincipal = new JFrmPrincipal();
+            JFrmPrincipal.setVisible(true);
+        } else {
+            System.out.println("Login errado");
+        }
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         System.exit(0);
-
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**
@@ -147,16 +157,24 @@ public class JFrmLogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrmLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -169,11 +187,12 @@ public class JFrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPwfSenha;
-    private javax.swing.JTextField jTxtUsuario;
+    private javax.swing.JTextField jTxtApelido;
     // End of variables declaration//GEN-END:variables
 }
