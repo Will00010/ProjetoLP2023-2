@@ -16,8 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="guitarra_cwmo"
-    ,catalog="test"
-//   , catalog="db_carlos_oliveira"     
+//    ,catalog="test"
+   , catalog="db_carlos_oliveira"     
 )
 public class GuitarraCwmo  implements java.io.Serializable {
 
