@@ -42,14 +42,14 @@ return 4;
         if (columnIndex == 0){
         return vendedorCwmo.getIdvendedorCwmo();
         }
-        if (columnIndex == 1){
-        return vendedorCwmo.getTelefoneCwmo();
+        if (columnIndex == 1 && vendedorCwmo.getUsuariosCwmo() != null){
+        return vendedorCwmo.getUsuariosCwmo().getNomeCwmo();
         }
         if (columnIndex == 2){
-        return vendedorCwmo.getCidadeCwmo();
+        return vendedorCwmo.getTelefoneCwmo();
         }
         if (columnIndex == 3){
-        return vendedorCwmo.getEstadoCwmo();
+        return vendedorCwmo.getCidadeCwmo();
         }
       return "";
     }
@@ -60,13 +60,13 @@ return 4;
         return "id";
         }
         if (column == 1){
-        return "Telefone";
+        return "Nome de Usuario";
         }
         if (column == 2){
-        return "Cidade";
+        return "Telefone";
         }
         if (column == 3){
-        return "Estado";
+        return "Cidade";
         }
                
         return "";

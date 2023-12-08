@@ -15,8 +15,9 @@ import tools.Util;
  *
  * @author carlo
  */
+ 
 public class JDlgGuitarra extends javax.swing.JDialog {
-
+ 
     /**
      * Creates new form JDlgGuitarra
      */
@@ -123,13 +124,14 @@ public class JDlgGuitarra extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
        jDlgGuitarraIA.setTitle("inclusão");
-    jDlgGuitarraIA.setVisible(true);  
-        List lista = guitarraDAO.listAll();
-        guitarraControle.setList(lista); 
+    jDlgGuitarraIA.setVisible(true);      
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         jDlgGuitarraIA.setTitle("alteração");
+        int rowSel = jTable1.getSelectedRow();
+        GuitarraCwmo guitarraCwmo = guitarraControle.getBean(rowSel);
+        jDlgGuitarraIA.beanView(guitarraCwmo);
         jDlgGuitarraIA.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

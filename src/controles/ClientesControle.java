@@ -39,13 +39,13 @@ return 4;
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-       
+ 
         ClientesCwmo clientesCwmo = (ClientesCwmo) lista.get(rowIndex);
         if (columnIndex == 0){
         return clientesCwmo.getIdClienteCwmo();
         }
         if (columnIndex == 1 && clientesCwmo.getUsuariosCwmo() != null){
-        return clientesCwmo.getUsuariosCwmo().getIdusuariosCwmo();
+        return clientesCwmo.getUsuariosCwmo().getNomeCwmo();
         }
         if (columnIndex == 2){
         return clientesCwmo.getTelefoneCwmo();
@@ -59,16 +59,16 @@ return 4;
     @Override
     public String getColumnName(int column){
         if (column == 0){
-        return "ID cliente";
+        return "ID Cliente";
         }
         if (column == 1){
-        return "FK usuario";
+        return "Nome Usuario";
         }
         if (column == 2){
-        return "telefone";
+        return "Telefone";
         }
         if (column == 3){
-        return "email";
+        return "Email";
         }
                
         return "";

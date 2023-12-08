@@ -16,8 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="vendas_produto_cwmo"
-//    ,catalog="test"
-   , catalog="db_carlos_oliveira"       
+    ,catalog="test"
+//   , catalog="db_carlos_oliveira"       
 )
 public class VendasProdutoCwmo  implements java.io.Serializable {
 
@@ -51,7 +51,7 @@ public class VendasProdutoCwmo  implements java.io.Serializable {
         this.idvendasProdutoCwmo = idvendasProdutoCwmo;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="fkprodutos_cwmo", nullable=false)
     public GuitarraCwmo getGuitarraCwmo() {
         return this.guitarraCwmo;
@@ -61,7 +61,7 @@ public class VendasProdutoCwmo  implements java.io.Serializable {
         this.guitarraCwmo = guitarraCwmo;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="fkvendas_cwmo", nullable=false)
     public VendasCwmo getVendasCwmo() {
         return this.vendasCwmo;

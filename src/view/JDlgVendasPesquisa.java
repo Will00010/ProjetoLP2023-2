@@ -5,6 +5,11 @@
  */
 package view;
 
+import bean.VendasCwmo;
+import controles.VendasControle;
+import dao.VendasDAO;
+import java.util.List;
+
 /**
  *
  * @author u07032685110
@@ -14,11 +19,21 @@ public class JDlgVendasPesquisa extends javax.swing.JDialog {
     /**
      * Creates new form JDlgVendasPesquisa
      */
+      private JDlgVendas jDlgVendas;
+    VendasControle vendasControle;
     public JDlgVendasPesquisa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Pesquisa de Vendas");
+        setLocationRelativeTo(null);
+        vendasControle = new VendasControle();
+        VendasDAO vendasDAO = new VendasDAO();
+        List lista = vendasDAO.listAll();
+        vendasControle.setList(lista);
+        jTable1.setModel(vendasControle); 
     }
-
+        public void setTelaAnterior(JDlgVendas jDlgVendas){
+    this.jDlgVendas = jDlgVendas;};
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,9 +65,19 @@ public class JDlgVendasPesquisa extends javax.swing.JDialog {
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
         jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
         jBtnOk.setText("OK");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,6 +104,18 @@ public class JDlgVendasPesquisa extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+              setVisible(false);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+        int rowSel = jTable1.getSelectedRow();       
+        VendasCwmo vendasCwmo = vendasControle.getBean(rowSel);
+        jDlgVendas.beanView(vendasCwmo);
+        setVisible(false);
+        
+    }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**
      * @param args the command line arguments

@@ -43,15 +43,15 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
- <!--     
+     
      <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/test?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
      <property name="hibernate.connection.password"></property>
-   --> 
+  <!-- 
     <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_carlos_oliveira?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">carlos_oliveira</property>
     <property name="hibernate.connection.password">carlos_oliveira</property>
- 
+   --> 
     <mapping class="bean.GuitarraCwmo"/>
     <mapping class="bean.ClientesCwmo"/>
     <mapping class="bean.VendedorCwmo"/>

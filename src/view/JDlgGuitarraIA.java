@@ -6,6 +6,7 @@
 package view;
 
 import bean.GuitarraCwmo;
+import controles.GuitarraControle;
 import dao.GuitarraDAO;
 import java.util.List;
 import tools.Util;
@@ -23,7 +24,7 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Guitarras");
+
     }
 
     public GuitarraCwmo viewBean() {
@@ -39,6 +40,7 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         guitarraCwmo.setPonteCwmo(jTxtPonte.getText());
         guitarraCwmo.setTipoCwmo(jTxtTipo.getText());
         guitarraCwmo.setTrastesCwmo(jTxtTrastes.getText());
+        guitarraCwmo.setValorUnitarioCwmo(Util.strDouble(jTxtValorUni.getText()));
         return guitarraCwmo;
     }
 
@@ -54,6 +56,7 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         jTxtPonte.setText(guitarraCwmo.getPonteCwmo());
         jTxtTipo.setText(guitarraCwmo.getTipoCwmo());
         jTxtTrastes.setText(guitarraCwmo.getTrastesCwmo());
+        jTxtValorUni.setText(Util.doubleStr(guitarraCwmo.getValorUnitarioCwmo()));
     }
 
     /**
@@ -81,6 +84,8 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTxtTipo = new javax.swing.JTextField();
         jCboCanhoto = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jTxtValorUni = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,6 +127,8 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
 
         jCboCanhoto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canhoto", "Destro" }));
 
+        jLabel8.setText("Valor Unitário");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,27 +138,27 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTxtPonte, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTxtPonte, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jTxtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTxtCodGuitarra, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTxtTipo))
-                                            .addComponent(jLabel4)))
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTxtCaptadores, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(jTxtTrastes)
-                                    .addComponent(jCboCanhoto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(jTxtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTxtCodGuitarra, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTxtTipo))
+                                    .addComponent(jLabel4)))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jTxtCaptadores, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(jTxtTrastes)
+                            .addComponent(jCboCanhoto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTxtValorUni))
                         .addGap(376, 376, 376))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBtnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,9 +170,13 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtCodGuitarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtCodGuitarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtValorUni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -205,9 +216,15 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         GuitarraCwmo guitarraCwmo = viewBean();
         GuitarraDAO guitarraDAO = new GuitarraDAO();
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")){
         guitarraDAO.insert(guitarraCwmo);
-        Util.limparCampos(jTxtCodGuitarra, jCboCanhoto, jTxtCaptadores, jTxtModelo, jTxtPonte, jTxtTipo, jTxtTrastes);
-        Util.mensagem("incluido");
+        } else {
+        guitarraDAO.update(guitarraCwmo);
+    }
+        GuitarraControle guitarraControle = new GuitarraControle();
+        List lista = guitarraDAO.listAll();
+        guitarraControle.setList(lista);
+        setVisible(false);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -272,11 +289,13 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTxtCaptadores;
     private javax.swing.JTextField jTxtCodGuitarra;
     private javax.swing.JTextField jTxtModelo;
     private javax.swing.JTextField jTxtPonte;
     private javax.swing.JTextField jTxtTipo;
     private javax.swing.JTextField jTxtTrastes;
+    private javax.swing.JTextField jTxtValorUni;
     // End of variables declaration//GEN-END:variables
 }

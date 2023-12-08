@@ -6,6 +6,7 @@
 package controles;
 
 import bean.GuitarraCwmo;
+import dao.GuitarraDAO;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

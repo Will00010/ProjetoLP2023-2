@@ -18,8 +18,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="clientes_cwmo"
-//     ,catalog="test"
-, catalog="db_carlos_oliveira"        
+     ,catalog="test"
+//, catalog="db_carlos_oliveira"        
 )
 public class ClientesCwmo  implements java.io.Serializable {
 
@@ -96,7 +96,7 @@ public class ClientesCwmo  implements java.io.Serializable {
         this.idClienteCwmo = idClienteCwmo;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="fkUsuario_cwmo", nullable=true)
 //teste
     public UsuariosCwmo getUsuariosCwmo() {
@@ -247,6 +247,18 @@ public class ClientesCwmo  implements java.io.Serializable {
         this.clientesCwmo = clientesCwmo;
     }
 
+     public String toString() {
+    return usuariosCwmo.getNomeCwmo();
+}
+       @Override
+      public boolean equals (Object object){
+      if(object instanceof ClientesCwmo){
+      ClientesCwmo clientesCwmo = (ClientesCwmo) object;
+        if(this.getIdClienteCwmo()== clientesCwmo.getIdClienteCwmo())
+            return true;
+                }         
+                return false;
+            }  
 }
 
 

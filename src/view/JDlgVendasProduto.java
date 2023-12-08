@@ -5,6 +5,13 @@
  */
 package view;
 
+import bean.GuitarraCwmo;
+import bean.VendasProdutoCwmo;
+import controles.VendasProdutoControle;
+import dao.GuitarraDAO;
+import java.util.List;
+import tools.Util;
+
 /**
  *
  * @author u07032685110
@@ -14,9 +21,31 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
     /**
      * Creates new form JDlgVendasProduto
      */
+    GuitarraDAO guitarraDAO;
+    JDlgVendas jDlgVendas;
+
     public JDlgVendasProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
+        guitarraDAO = new GuitarraDAO();
+        List listaGuitarra = (List) guitarraDAO.listAll();
+        for (Object item : listaGuitarra) {
+        jCboGuitarras.addItem((GuitarraCwmo) item);
+            Util.habilitar(false, jTxtTotal);
+        }
+    }
+
+    public VendasProdutoCwmo beanView(VendasProdutoCwmo vendasProdutoCwmo) {
+        jCboGuitarras.setSelectedItem(vendasProdutoCwmo.getGuitarraCwmo());
+        jTxtQuantidade.setText(Integer.toString(vendasProdutoCwmo.getQuantidadeCwmo()));
+        jTxtValorUni.setText(Double.toString(vendasProdutoCwmo.getValorunitarioCwmo()));
+        return vendasProdutoCwmo;
+    }
+
+    public void setTelaAnterior(JDlgVendas jDlgVenda) {
+        this.jDlgVendas = jDlgVenda;
     }
 
     /**
@@ -28,7 +57,7 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCboProdutos = new javax.swing.JComboBox<>();
+        jCboGuitarras = new javax.swing.JComboBox<GuitarraCwmo >();
         jLabel1 = new javax.swing.JLabel();
         jTxtQuantidade = new javax.swing.JTextField();
         jTxtValorUni = new javax.swing.JTextField();
@@ -41,60 +70,102 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jCboProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCboGuitarras.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCboGuitarrasItemStateChanged(evt);
+            }
+        });
+        jCboGuitarras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboGuitarrasActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Produto");
+
+        jTxtQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtQuantidadeKeyReleased(evt);
+            }
+        });
+
+        jTxtValorUni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTxtValorUniKeyReleased(evt);
+            }
+        });
+
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTotalActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Quantidade");
 
         jLabel3.setText("Valor Unitario");
 
-        jLabel4.setText("|Total");
+        jLabel4.setText("Total");
 
         jBtnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmar.png"))); // NOI18N
         jBtnOk.setText("Ok");
+        jBtnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOkActionPerformed(evt);
+            }
+        });
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCboProdutos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCboGuitarras, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtValorUni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(0, 210, Short.MAX_VALUE))
-                            .addComponent(jTxtTotal)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnCancelar)))
+                        .addComponent(jBtnCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtValorUni, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(0, 214, Short.MAX_VALUE))
+                                    .addComponent(jTxtTotal)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCboProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
+                .addComponent(jCboGuitarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -113,6 +184,58 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jCboGuitarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboGuitarrasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCboGuitarrasActionPerformed
+
+    private void jCboGuitarrasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCboGuitarrasItemStateChanged
+        jTxtQuantidade.setText("1");
+        GuitarraCwmo guitarraCwmo = (GuitarraCwmo) jCboGuitarras.getSelectedItem();
+        jTxtValorUni.setText(Util.doubleStr(guitarraCwmo.getValorUnitarioCwmo()));
+        jTxtTotal.setText(jTxtValorUni.getText());
+    }//GEN-LAST:event_jCboGuitarrasItemStateChanged
+
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTotalActionPerformed
+
+    private void jTxtQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtQuantidadeKeyReleased
+        if (jTxtQuantidade.getText().isEmpty() == false) {
+            double unitario = Util.strDouble(jTxtValorUni.getText());
+            double quantidade = Util.strDouble(jTxtQuantidade.getText());
+            jTxtTotal.setText(String.valueOf(quantidade * unitario));
+        } else {
+            jTxtTotal.setText("0");
+        }
+    }//GEN-LAST:event_jTxtQuantidadeKeyReleased
+
+    private void jTxtValorUniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtValorUniKeyReleased
+        if (jTxtValorUni.getText().isEmpty() == false) {
+            double unitario = Util.strDouble(jTxtValorUni.getText());
+            double quantidade = Util.strDouble(jTxtQuantidade.getText());
+            jTxtTotal.setText(String.valueOf(quantidade * unitario));
+        } else {
+            jTxtTotal.setText("0");
+        }
+    }//GEN-LAST:event_jTxtValorUniKeyReleased
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
+
+    private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
+        VendasProdutoCwmo vendasProdutoCwmo = new VendasProdutoCwmo();
+        vendasProdutoCwmo.setGuitarraCwmo((GuitarraCwmo) jCboGuitarras.getSelectedItem());
+        vendasProdutoCwmo.setQuantidadeCwmo(Util.strInt(jTxtQuantidade.getText()));
+        vendasProdutoCwmo.setValorunitarioCwmo(Util.strDouble(jTxtValorUni.getText()));
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            jDlgVendas.vendasProdutoControle.addBean(vendasProdutoCwmo);
+        } else {
+            jDlgVendas.vendasProdutoControle.updateBean(jDlgVendas.getSelectedRowProd(), vendasProdutoCwmo);
+        }
+        setVisible(false);
+    }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +282,7 @@ public class JDlgVendasProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnOk;
-    private javax.swing.JComboBox<String> jCboProdutos;
+    private javax.swing.JComboBox<GuitarraCwmo> jCboGuitarras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

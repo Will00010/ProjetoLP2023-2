@@ -6,6 +6,7 @@
 package dao;
 
 
+import bean.VendasCwmo;
 import bean.VendasProdutoCwmo;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,14 @@ public class VendasProdutosDAO extends DAO_Abstract  {
         session.getTransaction().commit();
         return(ArrayList) lista;
     }
-    
+    public List listProduto(VendasCwmo vendasCwmo){
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(VendasProdutoCwmo.class);
+    criteria.add( Restrictions.eq("vendasCwmo", vendasCwmo));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+    return lista;
+    }
 }
 
 

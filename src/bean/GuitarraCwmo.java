@@ -16,8 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="guitarra_cwmo"
-//    ,catalog="test"
-   , catalog="db_carlos_oliveira"     
+    ,catalog="test"
+//   , catalog="db_carlos_oliveira"     
 )
 public class GuitarraCwmo  implements java.io.Serializable {
 
@@ -29,13 +29,14 @@ public class GuitarraCwmo  implements java.io.Serializable {
      private String captadoresCwmo;
      private String ponteCwmo;
      private int canhotoDestroCwmo;
+     private Double valorUnitarioCwmo;
 
 
     public GuitarraCwmo() {
     }
 
 	
-    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, int canhotoDestroCwmo) {
+    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, int canhotoDestroCwmo, Double valorUnitarioCwmo) {
         this.idprodutosCwmo = idprodutosCwmo;
         this.tipoCwmo = tipoCwmo;
         this.trastesCwmo = trastesCwmo;
@@ -43,8 +44,9 @@ public class GuitarraCwmo  implements java.io.Serializable {
         this.captadoresCwmo = captadoresCwmo;
         this.ponteCwmo = ponteCwmo;
         this.canhotoDestroCwmo = canhotoDestroCwmo;
+        this.valorUnitarioCwmo = valorUnitarioCwmo;
     }
-    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, int canhotoDestroCwmo, Set vendasProdutoCwmos) {
+    public GuitarraCwmo(int idprodutosCwmo, String tipoCwmo, String trastesCwmo, String modeloCwmo, String captadoresCwmo, String ponteCwmo, int canhotoDestroCwmo, Set vendasProdutoCwmos, Double valorUnitarioCwmo) {
        this.idprodutosCwmo = idprodutosCwmo;
        this.tipoCwmo = tipoCwmo;
        this.trastesCwmo = trastesCwmo;
@@ -52,7 +54,7 @@ public class GuitarraCwmo  implements java.io.Serializable {
        this.captadoresCwmo = captadoresCwmo;
        this.ponteCwmo = ponteCwmo;
        this.canhotoDestroCwmo = canhotoDestroCwmo;
-
+       this.valorUnitarioCwmo = valorUnitarioCwmo;
     }
    
      @Id 
@@ -127,8 +129,28 @@ public class GuitarraCwmo  implements java.io.Serializable {
         this.canhotoDestroCwmo = canhotoDestroCwmo;
     }
 
+    @Column(name="valorUnitario_Cwmo", nullable=false, precision=5)
+    public Double getValorUnitarioCwmo() {
+        return this.valorUnitarioCwmo;
+    }
+    
+    public void setValorUnitarioCwmo(Double valorUnitarioCwmo) {
+        this.valorUnitarioCwmo = valorUnitarioCwmo;
+    }
 
-
+     public String toString() {
+    return modeloCwmo;
+}
+     @Override
+      public boolean equals (Object object){
+      if(object instanceof GuitarraCwmo){
+      GuitarraCwmo guitarraCwmo = (GuitarraCwmo) object;
+        if(this.getIdprodutosCwmo()== guitarraCwmo.getIdprodutosCwmo())
+            return true;
+                }         
+                return false;
+            }
+         
 }
 
 
