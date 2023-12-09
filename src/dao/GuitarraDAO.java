@@ -83,7 +83,7 @@ public class GuitarraDAO extends DAO_Abstract  {
         public List listTipoCanhoto(String tipo, int canhoto) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(GuitarraCwmo.class);
-        criteria.add(Restrictions.like("tipoCwmo", "%"+  tipo +"%"));
+        criteria.add(Restrictions.like("tipoCwmo", "%"+  tipo));
         criteria.add(Restrictions.eq("canhotoDestroCwmo",  canhoto));
         List lista = criteria.list();
         session.getTransaction().commit();

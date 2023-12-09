@@ -50,7 +50,12 @@ return 4;
         return guitarraCwmo.getTipoCwmo();
         }
         if (columnIndex == 3){
-        return guitarraCwmo.getPonteCwmo();
+        if(guitarraCwmo.getCanhotoDestroCwmo()==0){
+        return "Canhoto";
+        }else{
+        return "Destro";
+        }
+            
         }
       return "";
     }
@@ -67,9 +72,14 @@ return 4;
         return "Tipo";
         }
         if (column == 3){
-        return "Ponte";
+        return "Canhoto/destro";
         }
                
         return "";
     };
+    
+    public void updateBean(int index, GuitarraCwmo guitarraCwmo){ 
+        lista.set(index, guitarraCwmo);
+        this.fireTableDataChanged();
+    }
 }

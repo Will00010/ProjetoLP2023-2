@@ -49,7 +49,8 @@ public class JDlgVendas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Vendas");
-        Util.habilitar(false, jTxtIdVenda, jTxttotal, jCboCliente, jCboVendedor, jFmtData);
+        Util.habilitar(false, jTxtIdVenda, jTxttotal, jCboCliente,jCboVendedor, jFmtData, jBtnAlterarVp, jBtnExcluirVp, jBtnIncluirVp, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);        
         setLocationRelativeTo(null);
         vendasDAO = new VendasDAO();
 
@@ -355,30 +356,31 @@ public class JDlgVendas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAlterarVpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarVpActionPerformed
-        JDlgVendasProduto vendasProduto = new JDlgVendasProduto(null, true);
-        vendasProduto.setTitle("Alterar");
+        jDlgVendasProduto = new JDlgVendasProduto(null, true);
+        jDlgVendasProduto.setTitle("Alterar");
         jDlgVendasProduto.setTelaAnterior(this);
         int linSel = jTable1.getSelectedRow();
         vendasProdutoCwmo = (VendasProdutoCwmo) vendasProdutoControle.getBean(linSel);
         jDlgVendasProduto.beanView(vendasProdutoCwmo);
-        vendasProduto.setVisible(true);
+        jDlgVendasProduto.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarVpActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-if (vendasCwmo != null) {
-            
-           vendasDAO = new VendasDAO();
-                VendasProdutoCwmo vendasProdutoCwmo;
-                for (int linha = 0; linha < jTable1.getRowCount(); linha++) {
-                    vendasProdutoCwmo = vendasProdutoControle.getBean(linha);
-                    vendasDAO.delete(vendasProdutoCwmo);} 
-            Util.habilitar(true, jTxtIdVenda, jFmtData, jCboCliente, jCboVendedor, jTxttotal, jBtnAlterarVp, jBtnExcluirVp,jBtnIncluirVp, jBtnConfirmar, jBtnCancelar);
+        if (vendasCwmo != null) {
+
+            vendasDAO = new VendasDAO();
+            VendasProdutoCwmo vendasProdutoCwmo;
+            for (int linha = 0; linha < jTable1.getRowCount(); linha++) {
+                vendasProdutoCwmo = vendasProdutoControle.getBean(linha);
+                vendasDAO.delete(vendasProdutoCwmo);
+            }
+            Util.habilitar(true, jTxtIdVenda, jFmtData, jCboCliente, jCboVendedor, jTxttotal, jBtnAlterarVp, jBtnExcluirVp, jBtnIncluirVp, jBtnConfirmar, jBtnCancelar);
             Util.habilitar(false, jBtnExcluir, jBtnAlterar, jBtnIncluir, jBtnPesquisar);
         } else {
-            Util.mensagem("Faz uma pesquisa ai otario");
+            Util.mensagem("Faz uma pesquisa ai");
         }
         incluindo = false;
-        
+
      }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnIncluirVpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirVpActionPerformed
@@ -393,11 +395,12 @@ if (vendasCwmo != null) {
     }//GEN-LAST:event_jFmtDataActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-                Util.limparCampos(jTable1, jTxtIdVenda, jTxttotal, jFmtData, jCboCliente, jCboVendedor);
-        
-        JDlgVendasPesquisa jDlgVendasPesquisa = new JDlgVendasPesquisa(null, true);
-        jDlgVendasPesquisa.setTelaAnterior(this);
-        jDlgVendasPesquisa.setVisible(true);
+    Util.limparCampos(jTable1, jTxtIdVenda, jTxttotal, jFmtData, jCboCliente, jCboVendedor);
+    Util.habilitar(false,jBtnIncluir, jTxtIdVenda, jTxttotal, jCboCliente,jCboVendedor, jFmtData, jBtnAlterarVp, jBtnExcluirVp, jBtnIncluirVp, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
+    Util.habilitar(true, jBtnAlterar, jBtnPesquisar, jBtnCancelar, jBtnExcluir);            
+    JDlgVendasPesquisa jDlgVendasPesquisa = new JDlgVendasPesquisa(null, true);
+    jDlgVendasPesquisa.setTelaAnterior(this);
+    jDlgVendasPesquisa.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
@@ -474,8 +477,8 @@ if (vendasCwmo != null) {
                 vendasDAO.delete(vendasCwmo);
             }
         } else {
-            Util.mensagem("Deve ser realizada uma pesquisa antes");
-        }
+            Util.mensagem("Faz uma pesquisa ai");
+            }
         vendasProdutoControle.setList(new ArrayList());
         Util.limparCampos(jTxtIdVenda, jFmtData, jCboCliente, jCboVendedor, jTxttotal);
         vendasCwmo = null;

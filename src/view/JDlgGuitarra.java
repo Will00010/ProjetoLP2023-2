@@ -17,7 +17,7 @@ import tools.Util;
  */
  
 public class JDlgGuitarra extends javax.swing.JDialog {
- 
+  
     /**
      * Creates new form JDlgGuitarra
      */
@@ -39,7 +39,10 @@ public class JDlgGuitarra extends javax.swing.JDialog {
         jTable1.setModel(guitarraControle);
                 
     }
+public int getSelectedRowProd() {
+        return jTable1.getSelectedRow();
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,15 +127,18 @@ public class JDlgGuitarra extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
        jDlgGuitarraIA.setTitle("inclusão");
-    jDlgGuitarraIA.setVisible(true);      
+    jDlgGuitarraIA.setVisible(true);  
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         jDlgGuitarraIA.setTitle("alteração");
+        jDlgGuitarraIA.setTelaAnterior(this);
         int rowSel = jTable1.getSelectedRow();
-        GuitarraCwmo guitarraCwmo = guitarraControle.getBean(rowSel);
+    guitarraCwmo = (GuitarraCwmo) guitarraControle.getBean(getSelectedRowProd());
         jDlgGuitarraIA.beanView(guitarraCwmo);
         jDlgGuitarraIA.setVisible(true);
+
+        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed

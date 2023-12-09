@@ -39,8 +39,8 @@ public class JDlgClientes extends javax.swing.JDialog {
             Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
         jFmtTelefone.setFormatterFactory(new DefaultFormatterFactory(mascaraTelefone));
-        Util.habilitar(false, jCboEC, jTxtBairro, jTxtCidade, jTxtCodigo, jTxtComplemento, jTxtEmail, jTxtEstado, jTxtId, jTxtInteresses, jTxtNumero, jTxtPais, jTxtRua, jFmtCep, jFmtRg, jFmtTelefone, jCboSexo, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jCboEC, jTxtBairro, jTxtCidade, jTxtCodigo, jTxtComplemento, jTxtEmail, jTxtEstado, jTxtId, jTxtInteresses, jTxtNumero, jTxtPais, jTxtRua, jFmtCep, jFmtRg, jFmtTelefone, jCboSexo, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
     }
 
@@ -498,8 +498,8 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtBairroActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        Util.habilitar(false, jCboEC, jTxtBairro, jTxtCidade, jTxtCodigo, jTxtComplemento, jTxtEmail, jTxtEstado, jTxtId, jTxtInteresses, jTxtNumero, jTxtPais, jTxtRua, jFmtCep, jFmtRg, jFmtTelefone, jCboSexo, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jCboEC, jTxtBairro, jTxtCidade, jTxtCodigo, jTxtComplemento, jTxtEmail, jTxtEstado, jTxtId, jTxtInteresses, jTxtNumero, jTxtPais, jTxtRua, jFmtCep, jFmtRg, jFmtTelefone, jCboSexo, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
 
         Util.mensagem("Operação cancelada");
         Util.limparCampos(jCboEC, jTxtBairro, jTxtCidade, jTxtCodigo, jTxtComplemento, jTxtEmail, jTxtEstado, jTxtId, jTxtInteresses, jTxtNumero, jTxtPais, jTxtRua, jFmtCep, jFmtRg, jFmtTelefone, jCboSexo);

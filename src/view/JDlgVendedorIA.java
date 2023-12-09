@@ -8,6 +8,7 @@ package view;
 import bean.UsuariosCwmo;
 import bean.VendedorCwmo;
 import dao.VendedorDAO;
+import java.util.List;
 import java.util.Set;
 import tools.Util;
 
@@ -20,55 +21,61 @@ public class JDlgVendedorIA extends javax.swing.JDialog {
     /**
      * Creates new form JDlgVendedorIA
      */
+    JDlgVendedor jDlgVendedor;
+
     public JDlgVendedorIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-                setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
-    public VendedorCwmo viewBean(){
-    VendedorCwmo vendedorCwmo = new VendedorCwmo();
-    vendedorCwmo.setIdvendedorCwmo(Util.strInt(jTxtCodVendedor.getText()));
-    
-    UsuariosCwmo usuariosCwmo = new UsuariosCwmo();
-    usuariosCwmo.setIdusuariosCwmo(Util.strInt(jTxtCodUsuario.getText()));
-    vendedorCwmo.setUsuariosCwmo(usuariosCwmo);
-    
-//    vendedorCwmo.setUsuariosCwmo(Util.strInt(jTxtCodUsuario.getText()));
-    if (jCboSexo.getSelectedIndex() == 0){
-    vendedorCwmo.setSexoCwmo("M");
-    } else {
-    vendedorCwmo.setSexoCwmo("F");}
-    vendedorCwmo.setPaisCwmo(jTxtPais.getText());
-    vendedorCwmo.setEstadoCwmo(jTxtEstado.getText());
-    vendedorCwmo.setCidadeCwmo(jTxtCidade.getText());
-    vendedorCwmo.setTelefoneCwmo(jFmtTelefone.getText());
-    vendedorCwmo.setRuaCwmo(jTxtRua.getText());
-    vendedorCwmo.setComplementoCwmo(jTxtComplemento.getText());
-    vendedorCwmo.setCepCwmo(jFmtCep.getText());
-    vendedorCwmo.setNumeroCwmo(jFmtNumeroCasa.getText());
-    return vendedorCwmo;
+
+    public void setTelaAnterior(JDlgVendedor jDlgVendedor) {
+        this.jDlgVendedor = jDlgVendedor;
     }
-    
-    public void beanView(VendedorCwmo vendedorCwmo){
-    jTxtCodVendedor.setText(Util.intStr(vendedorCwmo.getIdvendedorCwmo()));
-    
-    UsuariosCwmo usuariosCwmo = vendedorCwmo.getUsuariosCwmo();
-    jTxtCodUsuario.setText(String.valueOf(usuariosCwmo.getIdusuariosCwmo()));
-//    jTxtCodUsuario.setText(Util.intStr(vendedorCwmo.getUsuariosCwmo()));
-    if(vendedorCwmo.getSexoCwmo()=="M"){
-    jCboSexo.setSelectedIndex(0);
-    }else{
-    jCboSexo.setSelectedIndex(1);}
-    jTxtPais.setText(vendedorCwmo.getPaisCwmo());
-    jTxtEstado.setText(vendedorCwmo.getEstadoCwmo());
-    jTxtCidade.setText(vendedorCwmo.getCidadeCwmo());
-    jFmtTelefone.setText(vendedorCwmo.getTelefoneCwmo());
-    jTxtRua.setText(vendedorCwmo.getRuaCwmo());
-    jTxtComplemento.setText(vendedorCwmo.getComplementoCwmo());
-    jFmtCep.setText(vendedorCwmo.getCepCwmo());
-    jFmtNumeroCasa.setText(vendedorCwmo.getNumeroCwmo());
-        
+
+    public VendedorCwmo viewBean() {
+        VendedorCwmo vendedorCwmo = new VendedorCwmo();
+        vendedorCwmo.setIdvendedorCwmo(Util.strInt(jTxtCodVendedor.getText()));
+
+        UsuariosCwmo usuariosCwmo = new UsuariosCwmo();
+        usuariosCwmo.setIdusuariosCwmo(Util.strInt(jTxtCodUsuario.getText()));
+        vendedorCwmo.setUsuariosCwmo(usuariosCwmo);
+        if (jCboSexo.getSelectedIndex() == 0) {
+            vendedorCwmo.setSexoCwmo("M");
+        } else {
+            vendedorCwmo.setSexoCwmo("F");
+        }
+        vendedorCwmo.setPaisCwmo(jTxtPais.getText());
+        vendedorCwmo.setEstadoCwmo(jTxtEstado.getText());
+        vendedorCwmo.setCidadeCwmo(jTxtCidade.getText());
+        vendedorCwmo.setTelefoneCwmo(jFmtTelefone.getText());
+        vendedorCwmo.setRuaCwmo(jTxtRua.getText());
+        vendedorCwmo.setComplementoCwmo(jTxtComplemento.getText());
+        vendedorCwmo.setCepCwmo(jFmtCep.getText());
+        vendedorCwmo.setNumeroCwmo(jFmtNumeroCasa.getText());
+        return vendedorCwmo;
     }
+
+    public void beanView(VendedorCwmo vendedorCwmo) {
+        jTxtCodVendedor.setText(Util.intStr(vendedorCwmo.getIdvendedorCwmo()));
+        UsuariosCwmo usuariosCwmo = vendedorCwmo.getUsuariosCwmo();
+        jTxtCodUsuario.setText(String.valueOf(usuariosCwmo.getIdusuariosCwmo()));
+        if (vendedorCwmo.getSexoCwmo().equals("M")) {
+            jCboSexo.setSelectedIndex(0);
+        } else {
+            jCboSexo.setSelectedIndex(1);
+        }
+        jTxtPais.setText(vendedorCwmo.getPaisCwmo());
+        jTxtEstado.setText(vendedorCwmo.getEstadoCwmo());
+        jTxtCidade.setText(vendedorCwmo.getCidadeCwmo());
+        jFmtTelefone.setText(vendedorCwmo.getTelefoneCwmo());
+        jTxtRua.setText(vendedorCwmo.getRuaCwmo());
+        jTxtComplemento.setText(vendedorCwmo.getComplementoCwmo());
+        jFmtCep.setText(vendedorCwmo.getCepCwmo());
+        jFmtNumeroCasa.setText(vendedorCwmo.getNumeroCwmo());
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -288,7 +295,7 @@ public class JDlgVendedorIA extends javax.swing.JDialog {
     }//GEN-LAST:event_jCboSexoActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jTxtCodVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodVendedorActionPerformed
@@ -296,12 +303,17 @@ setVisible(false);
     }//GEN-LAST:event_jTxtCodVendedorActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-    VendedorCwmo vendedorCwmo = viewBean();
-    VendedorDAO vendedorDAO = new VendedorDAO();
-    vendedorDAO.insert(vendedorCwmo);
-    
-    Util.limparCampos(jTxtCodVendedor,jTxtCodUsuario,jCboSexo,jTxtPais,jTxtEstado,jFmtTelefone,jTxtCidade,jTxtRua,jTxtComplemento,jFmtCep,jFmtNumeroCasa);
-    Util.mensagem("incluido");
+        VendedorCwmo vendedorCwmo = viewBean();
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            vendedorDAO.insert(vendedorCwmo);
+        } else {
+            vendedorDAO.update(vendedorCwmo);
+            jDlgVendedor.vendedorControle.updateBean(jDlgVendedor.getSelectedRowProd(), vendedorCwmo);
+        }
+
+        Util.limparCampos(jTxtCodVendedor, jTxtCodUsuario, jCboSexo, jTxtPais, jTxtEstado, jFmtTelefone, jTxtCidade, jTxtRua, jTxtComplemento, jFmtCep, jFmtNumeroCasa);
+        setVisible(false);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     /**

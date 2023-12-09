@@ -46,10 +46,10 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTxtTipo = new javax.swing.JTextField();
-        jTxtCanhoto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsultar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jCboCD = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -58,12 +58,6 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setText("Tipo");
-
-        jTxtCanhoto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtCanhotoActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Canhoto/Destro");
 
@@ -76,6 +70,8 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
 
         jLabel3.setForeground(new java.awt.Color(255, 0, 51));
         jLabel3.setText("0 para Guitarras de canhoto e 1 para guitarras de destros");
+
+        jCboCD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Canhoto", "Destro" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,10 +88,12 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTxtCanhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 16, Short.MAX_VALUE))
+                            .addComponent(jCboCD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addComponent(jBtnConsultar)))
                 .addContainerGap())
         );
@@ -109,8 +107,8 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtCanhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnConsultar))
+                    .addComponent(jBtnConsultar)
+                    .addComponent(jCboCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -149,30 +147,34 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
-        if (jTxtTipo.getText().equals("") && jTxtCanhoto.getText().equals("")) {
+        if (jTxtTipo.getText().equals("") && jCboCD.getSelectedIndex() == 0) {
             List lista = guitarraDAO.listAll();
             guitarraControle.setList(lista);
         } else {
-            if (!jTxtTipo.getText().equals("") && !jTxtCanhoto.getText().equals("")) {
-                List lista = guitarraDAO.listTipoCanhoto(jTxtTipo.getText(), Util.strInt(jTxtCanhoto.getText()));
+            if (!jTxtTipo.getText().equals("") && jCboCD.getSelectedIndex() == 1) {
+                List lista = guitarraDAO.listTipoCanhoto(jTxtTipo.getText(), 0);
+                guitarraControle.setList(lista);
+            }
+            if (!jTxtTipo.getText().equals("") && jCboCD.getSelectedIndex() == 2) {
+                List lista = guitarraDAO.listTipoCanhoto(jTxtTipo.getText(), 1);
                 guitarraControle.setList(lista);
             } else {
                 if (!jTxtTipo.getText().equals("")) {
                     List lista = guitarraDAO.listTipo(jTxtTipo.getText());
                     guitarraControle.setList(lista);
                 } else {
-                    if (!jTxtCanhoto.getText().equals("")) {
-                        List lista = guitarraDAO.listCanhoto(Util.strInt(jTxtCanhoto.getText()));
+                    if (jCboCD.getSelectedIndex() == 1) {
+                        List lista = guitarraDAO.listCanhoto(0);
+                        guitarraControle.setList(lista);
+                    }
+                    if (jCboCD.getSelectedIndex() == 2) {
+                        List lista = guitarraDAO.listCanhoto(1);
                         guitarraControle.setList(lista);
                     }
                 }
             }
         }
     }//GEN-LAST:event_jBtnConsultarActionPerformed
-
-    private void jTxtCanhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCanhotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtCanhotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,13 +220,13 @@ public class JDlgConsultasGuitarra extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
+    private javax.swing.JComboBox<String> jCboCD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtCanhoto;
     private javax.swing.JTextField jTxtTipo;
     // End of variables declaration//GEN-END:variables
 }

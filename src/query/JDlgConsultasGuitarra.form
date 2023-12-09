@@ -64,11 +64,14 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel3" max="32767" attributes="0"/>
-                              <Component id="jTxtCanhoto" pref="325" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel3" min="-2" pref="325" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jCboCD" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jBtnConsultar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -87,8 +90,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jTxtTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTxtCanhoto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBtnConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCboCD" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -104,11 +107,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTxtTipo">
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTxtCanhoto">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtCanhotoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -130,6 +128,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="0 para Guitarras de canhoto e 1 para guitarras de destros"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jCboCD">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value=""/>
+                <StringItem index="1" value="Canhoto"/>
+                <StringItem index="2" value="Destro"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

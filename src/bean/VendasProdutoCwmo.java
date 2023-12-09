@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,13 +41,12 @@ public class VendasProdutoCwmo  implements java.io.Serializable {
        this.valorunitarioCwmo = valorunitarioCwmo;
     }
    
-     @Id 
-
-    
-    @Column(name="idvendas_produto_cwmo", unique=true, nullable=false)
-    public int getIdvendasProdutoCwmo() {
-        return this.idvendasProdutoCwmo;
-    }
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name="idvendas_produto_cwmo", unique=true, nullable=false)
+public int getIdvendasProdutoCwmo() {
+    return this.idvendasProdutoCwmo;
+}
     
     public void setIdvendasProdutoCwmo(int idvendasProdutoCwmo) {
         this.idvendasProdutoCwmo = idvendasProdutoCwmo;

@@ -48,10 +48,18 @@ return 4;
         return clientesCwmo.getUsuariosCwmo().getNomeCwmo();
         }
         if (columnIndex == 2){
-        return clientesCwmo.getTelefoneCwmo();
+        return clientesCwmo.getInteressesCwmo();
         }
         if (columnIndex == 3){
-        return clientesCwmo.getEmailCwmo();
+        if(clientesCwmo.getClientesCwmo()==0){
+        return "Solteiro";
+        }if(clientesCwmo.getClientesCwmo()==1){
+        return "Casado";
+        }if(clientesCwmo.getClientesCwmo()==2){
+        return "Viuvo";
+        }if(clientesCwmo.getClientesCwmo()==3){
+        return "Outro";
+        }
         }
         return "";
     }
@@ -65,10 +73,10 @@ return 4;
         return "Nome Usuario";
         }
         if (column == 2){
-        return "Telefone";
+        return "Interesses";
         }
         if (column == 3){
-        return "Email";
+        return "Estado Civil";
         }
                
         return "";

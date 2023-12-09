@@ -20,11 +20,18 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     /**
      * Creates new form JDlgGuitarraIA
      */
+    JDlgGuitarra jDlgGuitarra;
+    GuitarraCwmo guitarraCwmo;
+
     public JDlgGuitarraIA(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
 
+    }
+
+    public void setTelaAnterior(JDlgGuitarra jDlgGuitarra) {
+        this.jDlgGuitarra = jDlgGuitarra;
     }
 
     public GuitarraCwmo viewBean() {
@@ -42,6 +49,7 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
         guitarraCwmo.setTrastesCwmo(jTxtTrastes.getText());
         guitarraCwmo.setValorUnitarioCwmo(Util.strDouble(jTxtValorUni.getText()));
         return guitarraCwmo;
+
     }
 
     public void beanView(GuitarraCwmo guitarraCwmo) {
@@ -216,18 +224,22 @@ public class JDlgGuitarraIA extends javax.swing.JDialog {
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         GuitarraCwmo guitarraCwmo = viewBean();
         GuitarraDAO guitarraDAO = new GuitarraDAO();
-        if (getTitle().toUpperCase().substring(0, 1).equals("I")){
-        guitarraDAO.insert(guitarraCwmo);
-        } else {
-        guitarraDAO.update(guitarraCwmo);
-    }
-        GuitarraControle guitarraControle = new GuitarraControle();
-        List lista = guitarraDAO.listAll();
-        guitarraControle.setList(lista);
         setVisible(false);
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            Util.limparCampos(jCboCanhoto, jTxtCaptadores, jTxtCodGuitarra, jTxtModelo, jTxtPonte, jTxtTipo, jTxtTrastes, jTxtValorUni);
+            guitarraDAO.insert(guitarraCwmo);
+
+        } else {
+            guitarraDAO.update(guitarraCwmo);
+            jDlgGuitarra.guitarraControle.updateBean(jDlgGuitarra.getSelectedRowProd(), guitarraCwmo);
+
+        }
+
+
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        Util.limparCampos(jCboCanhoto, jTxtCaptadores, jTxtCodGuitarra, jTxtModelo, jTxtPonte, jTxtTipo, jTxtTrastes, jTxtValorUni);
         setVisible(false);
 
     }//GEN-LAST:event_jBtnCancelarActionPerformed

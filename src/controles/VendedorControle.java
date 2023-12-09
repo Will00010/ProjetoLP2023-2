@@ -71,4 +71,8 @@ return 4;
                
         return "";
     };
+        public void updateBean(int index, VendedorCwmo vendedorCwmo){ 
+        lista.set(index, vendedorCwmo);
+        this.fireTableDataChanged();
+    }
 }

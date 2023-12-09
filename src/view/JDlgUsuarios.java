@@ -30,8 +30,8 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
         setLocationRelativeTo(null);
         setTitle("Usuario");
         try{
@@ -398,8 +398,8 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         //    desabilitar();
-        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir);
-        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel, jBtnCancelar, jBtnConfirmar, jBtnExcluir, jBtnAlterar);
+        Util.habilitar(true, jBtnIncluir, jBtnPesquisar);
   
         Util.mensagem("Operação cancelada");
         Util.limparCampos( jTxtCodigo, jTxtNome, jTxtApelido, JFmtCpf, jFmtDataNascimento, jPwfSenha, jchbAtivo, jCboNivel);

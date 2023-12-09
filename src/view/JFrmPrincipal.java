@@ -57,7 +57,6 @@ setExtendedState(MAXIMIZED_BOTH);
         jMnuSair = new javax.swing.JMenuItem();
         jMnuMovimento = new javax.swing.JMenu();
         jMnuVendas = new javax.swing.JMenuItem();
-        jMenuVendasProduto = new javax.swing.JMenuItem();
         jMnuMovimento1 = new javax.swing.JMenu();
         jMnuConsultaVendas = new javax.swing.JMenu();
         jMnuUsuarioConsulta = new javax.swing.JMenuItem();
@@ -189,11 +188,6 @@ setExtendedState(MAXIMIZED_BOTH);
         });
         jMnuMovimento.add(jMnuVendas);
 
-        jMenuVendasProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuVendasProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/produto.png"))); // NOI18N
-        jMenuVendasProduto.setText("Vendas Produtos");
-        jMnuMovimento.add(jMenuVendasProduto);
-
         jMnuMovimento1.setMnemonic('M');
         jMnuMovimento1.setText("Movimento");
         jMnuMovimento.add(jMnuMovimento1);
@@ -285,7 +279,8 @@ setExtendedState(MAXIMIZED_BOTH);
     }//GEN-LAST:event_jMnuGuitarraActionPerformed
 
     private void jMnuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendasActionPerformed
-
+    JDlgVendas vendas = new JDlgVendas(null, true);
+    vendas.setVisible(true);
     }//GEN-LAST:event_jMnuVendasActionPerformed
 
     private void jMnuUsuarioConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuUsuarioConsultaActionPerformed
@@ -382,7 +377,6 @@ setExtendedState(MAXIMIZED_BOTH);
     private javax.swing.JButton jBtnVendedor;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuVendasProduto;
     private javax.swing.JMenuItem jMnuCliente;
     private javax.swing.JMenuItem jMnuClienteConsulta;
     private javax.swing.JMenuItem jMnuConsultaVenda;
